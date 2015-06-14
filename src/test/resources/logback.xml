@@ -1,0 +1,13 @@
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+<!--         <layout class="ch.qos.logback.classic.PatternLayout"> -->
+        <layout class="com.github.kba.logback.xterm256.Xterm256PatternLayout">
+<!--             <Pattern>%highlightLevel(%d - %-5level %logger{0}:%L - %m%n){15;1;1}</Pattern> -->
+            <Pattern>%d - %-5level %logger{0}:%L - %highlightLevel(%m) %n</Pattern>
+<!--             <Pattern>%highlightLevel(%d - %-5level %logger{0}:%L - %m%n)</Pattern> -->
+        </layout>
+    </appender>
+    <root level="${log-level:-TRACE}">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

@@ -5,31 +5,31 @@ import ch.qos.logback.core.pattern.CompositeConverter;
 
 public abstract class Xterm256CompositeConverter<E> extends CompositeConverter<E>
 {
-	final private static String SET_DEFAULT_COLOR = ESC_START + "0;" + DEFAULT_FG + ESC_END;
+	final private static String RESET_COLOR = ESC_START + "0;" + DEFAULT_FG + DEFAULT_BG + ESC_END ;
 
 	protected static String parseColorTriple(String opt)
 	{
 		StringBuilder sb = new StringBuilder();
-		String[] fgboldbg = opt.split(";");
+		String[] fgSgrBg = opt.split("-");
 
-		// bg color if set
-		if (fgboldbg.length > 2)
+		// SGR if set
+		if (fgSgrBg.length > 1)
 		{
-			sb.append(START_256_BG);
-			sb.append(fgboldbg[2]);
-			sb.append(ESC_END);
-			sb.append(ESC_START);
-		}
-
-		// bold if set
-		if (fgboldbg.length > 1 && fgboldbg[1].equals("1"))
-		{
-			sb.insert(0, BOLD);
+			sb.append(fgSgrBg[1]);
+			sb.append(";");
 		}
 
 		// fg color
 		sb.append(START_256_FG);
-		sb.append(fgboldbg[0]);
+		sb.append(fgSgrBg[0]);
+
+		// bg color if set
+		if (fgSgrBg.length > 2)
+		{
+			sb.append(";");
+			sb.append(START_256_BG);
+			sb.append(fgSgrBg[2]);
+		}
 
 		return sb.toString();
 	}
@@ -44,7 +44,7 @@ public abstract class Xterm256CompositeConverter<E> extends CompositeConverter<E
 		sb.append(parseColorTriple(getColorTriple(event)));
 		sb.append(ESC_END);
 		sb.append(in);
-		sb.append(SET_DEFAULT_COLOR);
+		sb.append(RESET_COLOR);
 		return sb.toString();
 	}
 

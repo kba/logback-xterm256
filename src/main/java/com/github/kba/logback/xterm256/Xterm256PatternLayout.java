@@ -6,7 +6,7 @@ public class Xterm256PatternLayout extends PatternLayout {
 	static
 	{
 		PatternLayout.defaultConverterMap.put(
-				"highlightLevel", Highlighting256CompositeConverter.class.getName());
+				"highlightLevel", Xterm256HighlightingCompositeConverter.class.getName());
 	}
 
 }
