@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MarkerFactory;
 
 public class Xterm256CompositeConverterTest {
 
@@ -26,6 +27,7 @@ public class Xterm256CompositeConverterTest {
 		log.info("info should be green");
 		log.warn("warn should be yellow");
 		log.error("error should be white on red");
+		log.debug(MarkerFactory.getMarker("XTERM:3"), "This should be yellow");
 	}
 
 }

@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Marker;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 
@@ -50,9 +48,14 @@ public class Xterm256HighlightingCompositeConverter extends Xterm256CompositeCon
 	@Override
 	String getColorTriple(ILoggingEvent event)
 	{
-		if (event.getMarker() != null && event.getMarker().equals(Xterm256Constants.HIGHLIGHT))
+		if (event.getMarker() != null)
 		{
-			return HIGHLIGHT_TRIPLE;
+			if (event.getMarker().equals(Xterm256Constants.HIGHLIGHT))
+				return HIGHLIGHT_TRIPLE;
+			else if (event.getMarker().getName().startsWith("XTERM:"))
+			{
+				return event.getMarker().getName().split(":", 2)[1];
+			}
 		}
 		Level level = event.getLevel();
 		return colorTriples.get(levelIntOrder.get(level.toInt()));
