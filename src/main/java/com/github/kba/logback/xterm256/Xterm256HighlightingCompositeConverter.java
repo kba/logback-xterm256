@@ -14,11 +14,11 @@ public class Xterm256HighlightingCompositeConverter extends Xterm256CompositeCon
 	public static final String HIGHLIGHT_TRIPLE = "15-1-19";
 
 	public final static List<String> LEVEL_TRIPLES = Arrays.asList(
-			"15-1-124", // ERROR
-			"11",       // WARN
-			"10",       // INFO
-			"-0-",         // DEBUG
-			"248-3"     // TRACE
+			"15-1-124", // ERROR - bold bright white on red
+			"11",       // WARN - bright yellow
+			"10",       // INFO - bright green
+			"-0-",      // DEBUG - no highlight
+			"248-3"     // TRACE - darker gray italic
 	);
 	private final static Map<Integer, Integer> levelIntOrder = new HashMap<>();
 
@@ -52,9 +52,9 @@ public class Xterm256HighlightingCompositeConverter extends Xterm256CompositeCon
 		{
 			if (event.getMarker().equals(Xterm256Constants.HIGHLIGHT))
 				return HIGHLIGHT_TRIPLE;
-			else if (event.getMarker().getName().startsWith("XTERM:"))
+			else if (event.getMarker().getName().contains("XTERM:"))
 			{
-				return event.getMarker().getName().split(":", 2)[1];
+				return event.getMarker().getName().split("XTERM:", 2)[1];
 			}
 		}
 		Level level = event.getLevel();
