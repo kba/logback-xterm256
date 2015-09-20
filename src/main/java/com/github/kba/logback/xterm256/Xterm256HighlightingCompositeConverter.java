@@ -17,8 +17,8 @@ public class Xterm256HighlightingCompositeConverter extends Xterm256CompositeCon
 			"15-1-124", // ERROR - bold bright white on red
 			"11",       // WARN - bright yellow
 			"10",       // INFO - bright green
-			"-0-",      // DEBUG - no highlight
-			"248-3"     // TRACE - darker gray italic
+			"9-0-9",    // DEBUG - no highlight
+			"248"       // TRACE - darker gray italic
 	);
 	private final static Map<Integer, Integer> levelIntOrder = new HashMap<>();
 

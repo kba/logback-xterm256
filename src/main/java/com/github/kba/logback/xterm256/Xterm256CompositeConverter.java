@@ -20,14 +20,20 @@ public abstract class Xterm256CompositeConverter<E> extends CompositeConverter<E
 		}
 
 		// fg color
-		sb.append(START_256_FG);
+		if (fgSgrBg[0].length() == 1)
+			sb.append(START_8_FG);
+		else
+			sb.append(START_256_FG);
 		sb.append(fgSgrBg[0]);
 
 		// bg color if set
 		if (fgSgrBg.length > 2)
 		{
 			sb.append(";");
-			sb.append(START_256_BG);
+			if (fgSgrBg[2].length() == 1)
+				sb.append(START_8_BG);
+			else
+				sb.append(START_256_BG);
 			sb.append(fgSgrBg[2]);
 		}
 

@@ -14,7 +14,7 @@ public class Xterm256CompositeConverterTest {
 	@Test
 	public void testParseColorTriple() throws Exception
 	{
-		assertEquals("2;38;5;100;48;5;100", Xterm256CompositeConverter.parseColorTriple("100-2-200"));
+		assertEquals("2;38;5;100;48;5;200", Xterm256CompositeConverter.parseColorTriple("100-2-200"));
 		assertEquals("2;38;5;100", Xterm256CompositeConverter.parseColorTriple("100-2"));
 		assertEquals("38;5;100", Xterm256CompositeConverter.parseColorTriple("100"));
 	}

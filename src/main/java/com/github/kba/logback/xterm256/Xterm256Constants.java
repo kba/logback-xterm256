@@ -12,6 +12,8 @@ public class Xterm256Constants {
 	public final static String BOLD = "1;";
 	public final static String START_256_FG = "38;5;";
 	public final static String START_256_BG = "48;5;";
+	public final static String START_8_FG = "3";
+	public final static String START_8_BG = "4";
 
 	public final static String DEFAULT_FG = "39";
 	public final static String DEFAULT_BG = "49";
