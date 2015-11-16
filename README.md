@@ -1,6 +1,8 @@
 logback-xterm256
 ================
 
+[![Build Status](https://travis-ci.org/kba/logback-xterm256.svg)](https://travis-ci.org/kba/logback-xterm256)
+
 ## Configuration
 
 ```xml
